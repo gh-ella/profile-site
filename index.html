@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting…</title>
+</head>
+<body>
+<script>
+  (function () {
+    const saved = localStorage.getItem("lang_pref"); // "ko" | "en" | "ja"
+    const nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+
+    const pick = () => {
+      if (saved === "ko" || saved === "en" || saved === "ja") return saved;
+      if (nav.startsWith("ja")) return "ja";
+      if (nav.startsWith("ko")) return "ko";
+      return "en";
+    };
+
+    const lang = pick();
+    location.replace(`/${lang}/`);
+  })();
+</script>
+</body>
+</html>
